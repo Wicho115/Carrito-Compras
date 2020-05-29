@@ -7,6 +7,27 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.sql.*"%>
 <%@page import="java.util.*" %>
 <%@page import="Controlador.*" %>
+
+<%@ page session="true" %>
+<%
+String usuario = "";
+HttpSession sesionOk = request.getSession();
+if (sesionOk.getAttribute("usuario") == null) {
+%>
+<jsp:forward page="InicioSesion.jsp">
+<jsp:param name="error" value="Es
+obligatorio identificarse"/>
+</jsp:forward>
+<%
+} else {
+usuario = (String)sesionOk.getAttribute("usuario");
+}
+%>
+
+<% 
+    Producto p = new Producto();
+    Vector<Producto> lista = p.listaProductos();    
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,17 +75,26 @@
             <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
         
-        <nav>Bienvenido <!-- Usuario --></nav>
+        <nav>Bienvenido <%=usuario%></nav>
         <nav><a href="MostrarProductos.jsp">Nuestros Productos</a></nav>
-        <nav><a href="">Cerrar Sesión</a></nav>
+        <nav><a href="CerrarSesion">Cerrar Sesión</a></nav>
 
         <div class="tabla_productos">
             <!-- Aqui va la tabla con los productos -->
             <table>
                 <% 
-                
-                
-                
+                    for(Producto prod : lista){
+                        String url_pag = "ComprarProductos.jsp?codigo=" + prod.getCodigo_producto();
+                %>
+                <tr>
+                    <td><img src="img/<%=prod.getUrlImagen_producto()%>"</td>
+                    <td><%=prod.getNombre_producto()%></td>
+                    <td><%=prod.getPrecio_producto()%></td>
+                    <td><%=prod.getStock_producto()%></td>
+                    <td><a href="<%=url_pag%>"> Comprar </a></td>
+                </tr>                                                
+                <%        
+                    }
                 %>
             </table>
         </div>
