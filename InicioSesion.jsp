@@ -76,7 +76,7 @@
                 -->    
             </style>
     </head>
-
+    <script src="Verificar_Contraseña.js"></script>
     <body>
 
         <header>
@@ -116,7 +116,7 @@
 
                                 </td>
                                 <td>
-                                    <input type="submit" name="Button_Inicio" value="Iniciar Sesion"/>
+                                    <input type="button" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
                                 </td>
                             </tr>
                         </form>

@@ -34,3 +34,11 @@ function ComprobarContraseñas() {
     }
 }
 
+function ComprobarStock(){
+    
+}
+
+function CampoVacio(){
+    
+}
+

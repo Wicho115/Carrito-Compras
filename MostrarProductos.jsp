@@ -82,6 +82,13 @@ usuario = (String)sesionOk.getAttribute("usuario");
         <div class="tabla_productos">
             <!-- Aqui va la tabla con los productos -->
             <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Nombre</td>
+                    <td>Precio</td>
+                    <td>Unidades Disponibles</td>
+                    <td>&nbsp;</td>
+                </tr>
                 <% 
                     for(Producto prod : lista){
                         String url_pag = "ComprarProductos.jsp?codigo=" + prod.getCodigo_producto();
@@ -89,7 +96,7 @@ usuario = (String)sesionOk.getAttribute("usuario");
                 <tr>
                     <td><img src="img/<%=prod.getUrlImagen_producto()%>"</td>
                     <td><%=prod.getNombre_producto()%></td>
-                    <td><%=prod.getPrecio_producto()%></td>
+                    <td><%=prod.getPrecio_producto()%> Soles</td>
                     <td><%=prod.getStock_producto()%></td>
                     <td><a href="<%=url_pag%>"> Comprar </a></td>
                 </tr>                                                
