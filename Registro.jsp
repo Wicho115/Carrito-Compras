@@ -132,7 +132,7 @@
                                 Contraseña:
                             </td>
                             <td>
-                                <input type="text" name="registro_Password" id="registro_Password" />
+                                <input type="password" name="registro_Password" id="registro_Password" />
                             </td>
                         </tr>
                         <tr>
@@ -140,7 +140,7 @@
                                 Confirmar contraseña:
                             </td>
                             <td>
-                                <input type="text" name="registro_Password2" id="registro_Password2" />
+                                <input type="password" name="registro_Password2" id="registro_Password2" />
                             </td>
                         </tr>
                         <tr>

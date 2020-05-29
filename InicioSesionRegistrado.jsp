@@ -101,7 +101,7 @@
                                 Contraseña
                             </td>
                             <td>
-                                <input type="text" name="login_Contraseña" id="login_Contraseña"/>
+                                <input type="password" name="login_Contraseña" id="login_Contraseña"/>
                             </td>
                         </tr>
                         <tr>

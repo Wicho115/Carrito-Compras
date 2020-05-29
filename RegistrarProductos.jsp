@@ -1,17 +1,15 @@
 <%-- 
-    Document   : MostarProductos
-    Created on : 27/05/2020, 01:13:51 PM
-    Author     : luisc
+    Document   : RegistrarProductos
+    Created on : 28/05/2020, 04:46:45 PM
+    Author     : Wicho
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java" import="java.sql.*"%>
-<%@page import="java.util.*" %>
-<%@page import="Controlador.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tienda de Plantas "El Loco Dave"</title>
+        <title>JSP Page</title>
         <style type="text/css">
 
             *{
@@ -49,7 +47,7 @@
         </style>
     </head>
     <body>
-
+        
         <header>
             <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
@@ -59,19 +57,12 @@
         <nav><a href="">Cerrar Sesión</a></nav>
 
         <div class="tabla_productos">
-            <!-- Aqui va la tabla con los productos -->
-            <table>
-                <% 
-                
-                
-                
-                %>
-            </table>
+            <!-- Aqui va lo que vaya a poder hacer el admin -->            
         </div>
 
         <footer>
             En esta parte va el Copyright y el contacto
         </footer>
-
+        
     </body>
 </html>
