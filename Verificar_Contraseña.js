@@ -35,10 +35,29 @@ function ComprobarContraseñas() {
 }
 
 function ComprobarStock(){
+    var stock;
+    
+    stock = document.Producto.txt_stock.value;
+    
+    if (stock === 0) {
+        alert("Lo sentimos, esteproducto se ha agotado.");
+    }
     
 }
 
 function CampoVacio(){
+    var usuario, contraseña;
+    
+    usuario = document.inicioSesion.login_Usuario.value;
+    contraseña = document.inicioSesion.login_Contraseña.value;
+    
+    if (usuario === "a") {
+        alert("Favor de llenar todos los campos");
+    }else if (contraseña === "a"){
+        alert("Vavor de llenar todos los campos");
+    }else{
+        document.inicio_Sesion.submit();
+    }
     
 }
 

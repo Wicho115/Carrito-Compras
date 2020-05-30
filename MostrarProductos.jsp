@@ -1,5 +1,5 @@
 <%-- 
-    Document   : MostarProductos
+    Document   : MostrarProductos
     Created on : 27/05/2020, 01:13:51 PM
     Author     : luisc
 --%>

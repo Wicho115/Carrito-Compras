@@ -94,7 +94,7 @@
                 <br></br>
                 <!-- <div class="formulario"> -->
                     <table class="tabla">
-                        <form name="inicioSesion" action="VerificarUsuario" method="post">
+                        <form name="inicioSesion" id="inicio_Sesion" action="VerificarUsuario" method="post">
                             <tr>
                                 <td>
                                     Usuario
@@ -116,7 +116,7 @@
 
                                 </td>
                                 <td>
-                                    <input type="button" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
+                                    <input type="submit" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
                                 </td>
                             </tr>
                         </form>
