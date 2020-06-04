@@ -63,6 +63,32 @@ Producto p = new Producto().buscarProducto(codigo);
 
         </style>
     </head>
+    <script>
+        function ComprobarStock(){
+            var stock;
+
+            stock = document.Producto.stock.value;
+            stock = parseInt(stock);
+            
+            var numero = document.Producto.txtCantidadPedir.value;
+            numero = parseInt(numero);
+            
+            var proximos = stock - numero;
+
+            if (stock === 0) {
+                alert("Lo sentimos, esteproducto se ha agotado.");
+            }else{
+                if(proximos !== 0){
+                   if(proximos < 0){
+                       alert("No se puede joven");
+                   }else{
+                       alert("Ok");
+                   } 
+                }
+            }
+
+        }
+    </script>
     <body>
         
         <header>
@@ -78,8 +104,8 @@ Producto p = new Producto().buscarProducto(codigo);
                         <td>Nombre</td>
                     </tr>
                 <tr>
-                    <td><input type="text" name="txt_codigo" id="txt_codigo" readonly value="<%=p.getCodigo_producto()%>"></td>
-                    <td><input type="text" name="txt_nombre" id="txt_nombre" readonly value="<%=p.getNombre_producto()%>"></td>
+                    <td><%=p.getCodigo_producto()%></td>
+                    <td><%=p.getNombre_producto()%></td>
                 </tr>
                 <tr>
                     <td colspan="2"><img src="img/<%=p.getUrlImagen_producto()%>"></td>
@@ -89,11 +115,11 @@ Producto p = new Producto().buscarProducto(codigo);
                     <td>Disponible</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="txt_precio" id="txt_precio" readonly value="<%=p.getPrecio_producto()%> Soles" ></td>
-                    <td><input type="text" name="txt_stock" id="txt_stock" readonly value="<%=p.getStock_producto()%>"></td>
+                    <td><%=p.getPrecio_producto()%> Soles</td>
+                    <td><input type="text" readonly name="stock" id="stock" value="<%=p.getStock_producto()%>"/></td>
                 </tr>
                 <tr>
-                    <td><input name="txtCantidadPedir" type="text" id="txtCantidadPedir" value="1" size="15"></td>
+                    <td><input name="txtCantidadPedir" type="number" id="txtCantidadPedir" value="1" size="15"></td>
                     <td><input type="button" value="Registrar" onclick="ComprobarStock()"></td>
                 </tr>
             </table>

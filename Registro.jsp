@@ -81,7 +81,74 @@
             -->
         </style>
     </head>
-    <script src="Verificar_Contraseña.js"></script>
+    <script>
+        
+    function CamposVacíos() {
+        var nombre, appat, apmat, usuario;
+        var contraseña;
+        var contraseñaCon;
+
+        nombre = document.Registro_form.registro_Nombre.value;
+        appat = document.Registro_form.registro_ApPaterno.value;
+        apmat = document.Registro_form.registro_ApMat.value;
+        usuario = document.Registro_form.registro_User.value;
+        contraseña = document.Registro_form.registro_Password.value;
+        contraseñaCon = document.Registro_form.registro_Password2.value;
+
+        //Comprobar que los campos están completos
+        if (nombre === "") {
+            alert("Favor de llenar todos los campos");
+        } else if (appat === "") {
+            alert("Favor de llenar todos los campos");
+        } else if (apmat === "") {
+            alert("Favor de llenar todos los campos");
+        } else if (usuario === "") {
+            alert("Favor de llenar todos los campos");
+        } else if (contraseña === "") {
+            alert("Favor de llenar todos los campos");
+        } else if (contraseñaCon === "") {
+            alert("Favor de llenar todos los campos");
+        } else {
+            ComprobarEspacios();
+        }
+    }
+
+    function ComprobarEspacios() {
+        //alert("Comprobando espacios");
+        var usuario, contraseña;
+        var noValido = /\s/;
+
+        usuario = document.Registro_form.registro_User.value;
+        contraseña = document.Registro_form.registro_Password.value;
+
+        if (noValido.test(usuario)) { // se chequea el regex de que el string no tenga espacio
+            alert("El ususario no puede contener espacios en blanco");
+            return false;
+        }else if (noValido.test(contraseña)) {
+            alert("La contraseña no puede contener espacios en blanco");
+            return false;
+        }else {
+             //alert("No se detectaron espacios");
+            ContraseñasIguales();
+        }
+    }
+
+    function ContraseñasIguales(){
+        var contraseña;
+        var contraseñaCon;
+
+        contraseña = document.Registro_form.registro_Password.value;
+        contraseñaCon = document.Registro_form.registro_Password2.value;
+
+        if (contraseña === contraseñaCon) {
+                location.href = "InicioSesionRegistrado.jsp";
+            }
+            else {
+                alert("Las contraseñas no coinciden");
+            }
+    }
+        
+    </script>
     <body>
 
         <header>
@@ -145,7 +212,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" align="center">
-                                <input class="boton" type="button" name="Button_Registrar" value="Registrarse" onclick="ComprobarContraseñas()"/>
+                                <input class="boton" type="button" name="Button_Registrar" value="Registrarse" onclick="CamposVacíos()"/>
                             </td>
                         </tr>
                     </table>   

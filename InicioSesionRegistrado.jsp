@@ -70,7 +70,44 @@
             -->    
         </style>
     </head>
+    <script>
+        
+        function CampoVacio(){
+        var usuario, contraseña;
 
+        usuario = document.getElementById("login_Usuario").value;
+        contraseña = document.getElementById("login_Contraseña").value;
+
+        if (usuario === "") {
+            alert("Favor de llenar todos los campos");
+        }else if (contraseña === ""){
+            alert("Favor de llenar todos los campos");
+        }else{
+            CamposEspacios();
+        }
+
+    }
+
+    function CamposEspacios() {
+        //alert("Comprobando espacios");
+        var usuario, contraseña;
+        var noValido = /\s/;
+
+        usuario = document.getElementById("login_Usuario").value;
+        contraseña = document.getElementById("login_Contraseña").value;
+
+        if (noValido.test(usuario)) { // se chequea el regex de que el string no tenga espacio
+            alert("El usuario no puede contener espacios en blanco");
+            return false;
+        }else if (noValido.test(contraseña)) {
+            alert("La contraseña no puede contener espacios en blanco");
+            return false;
+        }else{
+            document.inicio_Sesion2.submit();
+        }
+    }
+        
+    </script>
     <body>
 
         <header>
@@ -87,7 +124,7 @@
             <article>
                 <br></br>
                 <table class="tabla">
-                    <form name="inicioSesion" action="VerificarUsuario" method="post">
+                    <form name="inicio_Sesion2" action="VerificarUsuario" method="post">
                         <tr>
                             <td>
                                 Usuario
@@ -109,7 +146,7 @@
 
                             </td>
                             <td>
-                                <input type="submit" name="Button_Inicio" value="Iniciar Sesion"/>
+                                <input type="button" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
                             </td>
                         </tr>
                     </form>

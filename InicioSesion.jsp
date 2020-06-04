@@ -3,7 +3,7 @@
 --%>
 
 <%@page contentType="text/html; charset=iso-8859-1" language="java" session="true" import="java.util.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,7 +76,44 @@
                 -->    
             </style>
     </head>
-    <script src="Verificar_Contraseña.js"></script>
+    <script>
+        
+    function CampoVacio(){
+        var usuario, contraseña;
+
+        usuario = document.getElementById("login_Usuario").value;
+        contraseña = document.getElementById("login_Contraseña").value;
+
+        if (usuario === "") {
+            alert("Favor de llenar todos los campos");
+        }else if (contraseña === ""){
+            alert("Favor de llenar todos los campos");
+        }else{
+            CamposEspacios();
+        }
+
+    }
+
+    function CamposEspacios() {
+        //alert("Comprobando espacios");
+        var usuario, contraseña;
+        var noValido = /\s/;
+
+        usuario = document.getElementById("login_Usuario").value;
+        contraseña = document.getElementById("login_Contraseña").value;
+
+        if (noValido.test(usuario)) { // se chequea el regex de que el string no tenga espacio
+            alert("El usuario no puede contener espacios en blanco");
+            return false;
+        }else if (noValido.test(contraseña)) {
+            alert("La contraseña no puede contener espacios en blanco");
+            return false;
+        }else{
+            document.inicio_Sesion1.submit();
+        }
+    }
+        
+    </script>
     <body>
 
         <header>
@@ -94,7 +131,7 @@
                 <br></br>
                 <!-- <div class="formulario"> -->
                     <table class="tabla">
-                        <form name="inicioSesion" id="inicio_Sesion" action="VerificarUsuario" method="post">
+                        <form name="inicio_Sesion1" action="VerificarUsuario" method="post">
                             <tr>
                                 <td>
                                     Usuario
@@ -116,7 +153,7 @@
 
                                 </td>
                                 <td>
-                                    <input type="submit" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
+                                    <input type="button" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
                                 </td>
                             </tr>
                         </form>
