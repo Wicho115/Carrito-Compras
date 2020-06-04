@@ -36,7 +36,7 @@
                     height: 170px;
                     display: inline-block;
                     text-align: justify;
-                    background-color: white;
+                    background-color: #5FAD50;
                     padding: 1rem;
                     margin: 1rem;
                     border-radius: 10px;

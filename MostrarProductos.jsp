@@ -10,23 +10,23 @@
 
 <%@ page session="true" %>
 <%
-String usuario = "";
-HttpSession sesionOk = request.getSession();
-if (sesionOk.getAttribute("usuario") == null) {
+    String usuario = "";
+    HttpSession sesionOk = request.getSession();
+    if (sesionOk.getAttribute("usuario") == null) {
 %>
 <jsp:forward page="InicioSesion.jsp">
-<jsp:param name="error" value="Es
-obligatorio identificarse"/>
+    <jsp:param name="error" value="Es
+               obligatorio identificarse"/>
 </jsp:forward>
 <%
-} else {
-usuario = (String)sesionOk.getAttribute("usuario");
-}
+    } else {
+        usuario = (String) sesionOk.getAttribute("usuario");
+    }
 %>
 
-<% 
+<%
     Producto p = new Producto();
-    Vector<Producto> lista = p.listaProductos();    
+    Vector<Producto> lista = p.listaProductos();
 %>
 <!DOCTYPE html>
 <html>
@@ -49,22 +49,52 @@ usuario = (String)sesionOk.getAttribute("usuario");
             header, footer, nav{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
-                margin: 2rem;
+                margin: 1rem;
                 background-color: #378337;
                 color: #F2E2D2;
             }
-            
-            nav{
-                display: inline-block;
-                padding: 1rem;
-                vertical-align: middle;
-            }
 
-            .tabla_productos{
+            nav{
+                display: inline-block;                
+                vertical-align: middle;
+                background-color: #5FAD50;
+            }
+            
+            a{
+                color: white;
+            }
+            
+            .navegacion{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
                 margin: 2rem;
                 background-color: #5FAD41;
+            }
+
+            .tabla_productos1{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 2rem;
+                background-color: #5FAD41;
+            }
+            
+            .texto{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background-color: #5FAD50;
+            }
+
+            .tabla_productos2{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 2rem;
+                background-color: #5FAD50;
+            }
+
+            .tabla{
+                border: 4px solid rgb(58, 86, 131);
+                border-radius: 10px;
             }
 
         </style>
@@ -74,36 +104,45 @@ usuario = (String)sesionOk.getAttribute("usuario");
         <header>
             <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
-        
-        <nav>Bienvenido <%=usuario%></nav>
-        <nav><a href="MostrarProductos.jsp">Nuestros Productos</a></nav>
-        <nav><a href="CerrarSesion">Cerrar Sesión</a></nav>
 
-        <div class="tabla_productos">
+        <div class="navegacion">
+            <nav><h3>&nbsp;&nbsp;Bienvenido <%=usuario%>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="MostrarProductos.jsp">Nuestros Productos</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
+        </div>        
+
+        <div class="tabla_productos1">
+            <div class="texto">
+                <h2>Estos son nuestros productos</h2>
+            </div>
             <!-- Aqui va la tabla con los productos -->
-            <table>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>Nombre</td>
-                    <td>Precio</td>
-                    <td>Unidades Disponibles</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <% 
-                    for(Producto prod : lista){
-                        String url_pag = "ComprarProductos.jsp?codigo=" + prod.getCodigo_producto();
-                %>
-                <tr>
-                    <td><img src="img/<%=prod.getUrlImagen_producto()%>"</td>
-                    <td><%=prod.getNombre_producto()%></td>
-                    <td><%=prod.getPrecio_producto()%> Soles</td>
-                    <td><%=prod.getStock_producto()%></td>
-                    <td><a href="<%=url_pag%>"> Comprar </a></td>
-                </tr>                                                
-                <%        
-                    }
-                %>
-            </table>
+            <div class="tabla_productos2">
+                <br>
+                <table class="tabla" border="3">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Nombre</td>
+                        <td>Precio</td>
+                        <td>Unidades Disponibles</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <%
+                        for (Producto prod : lista) {
+                            String url_pag = "ComprarProductos.jsp?codigo=" + prod.getCodigo_producto();
+                    %>
+                    <tr>
+                        <td><img src="img/<%=prod.getUrlImagen_producto()%>" width="200px"></td>
+                        <td><%=prod.getNombre_producto()%></td>
+                        <td><%=prod.getPrecio_producto()%> Soles</td>
+                        <td><%=prod.getStock_producto()%></td>
+                        <td><a href="<%=url_pag%>"> Comprar </a></td>
+                    </tr>                                                
+                    <%
+                        }
+                    %>
+                </table>
+                <br>
+            </div>
         </div>
 
         <footer>
