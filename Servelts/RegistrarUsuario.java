@@ -5,20 +5,21 @@
  */
 package Servelts;
 
+import Controlador.Conexion;
 import Controlador.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Wicho
  */
-public class VerificarUsuario extends HttpServlet {
+public class RegistrarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,29 +32,35 @@ public class VerificarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String usuario = request.getParameter("login_Usuario");
-            String contrasena = request.getParameter("login_Contraseña");
+        String nombre = request.getParameter("registro_Nombre");
+        String apellidoPat = request.getParameter("registro_ApPaterno");
+        String apellidoMat = request.getParameter("registro_ApMat");
+        String apellidos = apellidoPat + " " + apellidoMat;
+        String usuario = request.getParameter("registro_User");
+        String clave = request.getParameter("registro_Password");
+        
+        Usuario u = null;
+        Connection cn = null;
+        PreparedStatement pr = null;       
+        
+        try{
+            cn = Conexion.getConexion();
+            String sql = "INSERT INTO usuario VALUES (null,'"+nombre+"','"+apellidos+"','"+usuario+"','"+clave+"',1)";
+            pr = cn.prepareStatement(sql);
+            pr.executeUpdate();            
             
-            Usuario u = new Usuario();
-            System.out.println("A punto de");
-            u=u.VerificarUsuario(usuario, contrasena);
-            System.out.println("ya fue");
-            if(u != null){
-                HttpSession sesion=request.getSession(true);
-                sesion.setAttribute("usuario", u);
-                
-                HttpSession sesionOk = request.getSession();
-                sesionOk.setAttribute("usuario",usuario);
-                
-                if(u.getPrivilegio_usuario() == 0){
-                    response.sendRedirect("RegistrarProductos.jsp");
-                }else{
-                    response.sendRedirect("MostrarProductos.jsp");
-                }
-                
-            }else{
-                response.sendRedirect("error.jsp");
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                pr.close();
+                cn.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
             }
+        }
+        response.sendRedirect("InicioSesionRegistrado.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

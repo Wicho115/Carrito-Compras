@@ -53,7 +53,7 @@ public class Usuario {
                 pr.close();
                 cn.close();
             }catch(SQLException ex){
-                
+                ex.printStackTrace();
             }
         }
         

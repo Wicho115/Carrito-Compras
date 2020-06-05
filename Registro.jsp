@@ -141,7 +141,7 @@
         contraseñaCon = document.Registro_form.registro_Password2.value;
 
         if (contraseña === contraseñaCon) {
-                location.href = "InicioSesionRegistrado.jsp";
+                document.Registro_form.submit();
             }
             else {
                 alert("Las contraseñas no coinciden");
@@ -160,14 +160,14 @@
                 <h1>Ingrese sus datos para poder Registrar el usuario</h1>
             </aside>
             <article>
-                <form name="Registro_form" method="post">
+                <form name="Registro_form" action="RegistrarUsuario" method="post">
                     <table class="tabla">
                         <tr>
                             <td>
                                 Nombre:
                             </td>
                             <td>
-                                <input type="text" name="registro_Nombre" id="registro_Nombre" />
+                                <input type="text" name="registro_Nombre" id="registro_Nombre" required/>
                             </td>
                         </tr>
                         <tr>
@@ -175,7 +175,7 @@
                                 Apellido Paterno:
                             </td>
                             <td>
-                                <input type="text" name="registro_ApPaterno" id="registro_ApPaterno" />
+                                <input type="text" name="registro_ApPaterno" id="registro_ApPaterno" required/>
                             </td>
                         </tr>
                         <tr>
@@ -183,7 +183,7 @@
                                 Apellido Materno:
                             </td>
                             <td>
-                                <input type="text" name="registro_ApMat" id="registro_ApMat" />
+                                <input type="text" name="registro_ApMat" id="registro_ApMat" required/>
                             </td>
                         </tr>
                         <tr>
@@ -191,7 +191,7 @@
                                 Usuario:
                             </td>
                             <td>
-                                <input type="text" name="registro_User" id="registro_User" />
+                                <input type="text" name="registro_User" id="registro_User"/>
                             </td>
                         </tr>
                         <tr>
@@ -199,7 +199,7 @@
                                 Contraseña:
                             </td>
                             <td>
-                                <input type="password" name="registro_Password" id="registro_Password" />
+                                <input type="password" name="registro_Password" id="registro_Password"/>
                             </td>
                         </tr>
                         <tr>
@@ -207,7 +207,7 @@
                                 Confirmar contraseña:
                             </td>
                             <td>
-                                <input type="password" name="registro_Password2" id="registro_Password2" />
+                                <input type="text" name="registro_Password2" id="registro_Password2"/>
                             </td>
                         </tr>
                         <tr>

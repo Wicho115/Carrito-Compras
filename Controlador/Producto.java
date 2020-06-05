@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Producto {
 
-    private int Codigo_producto;
+    private int Numero_DetalleVenta;
     private String Nombre_producto;
     private float Precio_producto;
     private int Stock_producto;
@@ -33,7 +33,7 @@ public class Producto {
             
             while(rs.next()){
                 Producto p = new Producto();
-                p.setCodigo_producto(rs.getInt("producto_Codigo"));
+                p.setNumero_DetalleVenta(rs.getInt("producto_Codigo"));
                 p.setNombre_producto(rs.getString("producto_Nombre"));
                 p.setStock_producto(rs.getInt("producto_stock"));
                 p.setPrecio_producto(rs.getFloat("producto_Precio"));
@@ -65,12 +65,12 @@ public class Producto {
         
         try{
             cn = Conexion.getConexion();
-            String sql = "select * from producto where producto_Codigo=?";
+            String sql = "select * from producto where Codigo_Producto=?";
             pr = cn.prepareStatement(sql);
             pr.setInt(1,codigo_prod);
             rs = pr.executeQuery();
             while(rs.next()){
-                p.setCodigo_producto(rs.getInt("producto_Codigo"));
+                p.setNumero_DetalleVenta(rs.getInt("Codigo_Producto"));
                 p.setNombre_producto(rs.getString("producto_Nombre"));
                 p.setPrecio_producto(rs.getFloat("producto_Precio"));
                 p.setStock_producto(rs.getInt("producto_stock"));
@@ -93,12 +93,12 @@ public class Producto {
     }
     
 
-    public int getCodigo_producto() {
-        return Codigo_producto;
+    public int getNumero_DetalleVenta() {
+        return Numero_DetalleVenta;
     }
 
-    public void setCodigo_producto(int Codigo_producto) {
-        this.Codigo_producto = Codigo_producto;
+    public void setNumero_DetalleVenta(int Numero_DetalleVenta) {
+        this.Numero_DetalleVenta = Numero_DetalleVenta;
     }
 
     public String getNombre_producto() {

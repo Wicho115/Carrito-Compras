@@ -160,7 +160,7 @@
                             <td>Nombre</td>
                         </tr>
                         <tr>
-                            <td><%=p.getCodigo_producto()%></td>
+                            <td><%=p.getNumero_DetalleVenta()%></td>
                             <td><%=p.getNombre_producto()%></td>
                         </tr>
                         <tr>

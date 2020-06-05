@@ -4,12 +4,12 @@
     Author     : Wicho
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=iso-8859-1" language="java" session="true" import="java.util.*" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inicio de Sesión</title>
+        <title>Inicio de Sesi�n</title>
         <style type="text/css">
             <!--    
 
@@ -73,14 +73,14 @@
     <script>
         
         function CampoVacio(){
-        var usuario, contraseña;
+        var usuario, contrase�a;
 
         usuario = document.getElementById("login_Usuario").value;
-        contraseña = document.getElementById("login_Contraseña").value;
+        contrase�a = document.getElementById("login_Contrase�a").value;
 
         if (usuario === "") {
             alert("Favor de llenar todos los campos");
-        }else if (contraseña === ""){
+        }else if (contrase�a === ""){
             alert("Favor de llenar todos los campos");
         }else{
             CamposEspacios();
@@ -90,17 +90,17 @@
 
     function CamposEspacios() {
         //alert("Comprobando espacios");
-        var usuario, contraseña;
+        var usuario, contrase�a;
         var noValido = /\s/;
 
         usuario = document.getElementById("login_Usuario").value;
-        contraseña = document.getElementById("login_Contraseña").value;
+        contrase�a = document.getElementById("login_Contrase�a").value;
 
         if (noValido.test(usuario)) { // se chequea el regex de que el string no tenga espacio
             alert("El usuario no puede contener espacios en blanco");
             return false;
-        }else if (noValido.test(contraseña)) {
-            alert("La contraseña no puede contener espacios en blanco");
+        }else if (noValido.test(contrase�a)) {
+            alert("La contrase�a no puede contener espacios en blanco");
             return false;
         }else{
             document.inicio_Sesion2.submit();
@@ -111,14 +111,14 @@
     <body>
 
         <header>
-            <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
+            <h1>�Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
 
         <div class="contenedor">
             <aside>
                 <h2>Gracias por crear una cuenta con nosotros</h2>
                 <br></br>
-                <h4>A continuación Ingresa los datos de tu nueva cuenta para iniciar sesión</h4>
+                <h4>A continuaci�n Ingresa los datos de tu nueva cuenta para iniciar sesi�n</h4>
                 <br></br>
             </aside>
             <article>
@@ -135,10 +135,10 @@
                         </tr>
                         <tr>
                             <td>
-                                Contraseña
+                                Contrase�a
                             </td>
                             <td>
-                                <input type="password" name="login_Contraseña" id="login_Contraseña"/>
+                                <input type="password" name="login_Contrase�a" id="login_Contrase�a"/>
                             </td>
                         </tr>
                         <tr>
@@ -149,10 +149,7 @@
                                 <input type="button" name="Button_Inicio" value="Iniciar Sesion" onclick="CampoVacio()"/>
                             </td>
                         </tr>
-                    </form>
-                    <tr>
-                        <td colspan="2">¿Aún no tienes cuenta con nostros? <a href="Registro.jsp">Registrate!</a></td>
-                    </tr>
+                    </form>                    
                 </table>
                 <br></br>
             </article>
