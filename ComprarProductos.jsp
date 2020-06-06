@@ -46,24 +46,29 @@
                 background: url(img/pasto.jpeg)
             }
 
-            header, footer, nav{
+            header, footer {
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background: url(img/madera.jpg);
+                color: #F2E2D2;
+            }
+
+            nav{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
                 margin: 1rem;
                 background-color: #378337;
                 color: #F2E2D2;
-            }
-            
-            nav{
                 display: inline-block;                
                 vertical-align: middle;
                 background-color: #5FAD50;
             }
-            
+
             a{
                 color: white;
             }            
-            
+
             .navegacion{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
@@ -77,7 +82,7 @@
                 margin: 2rem;
                 background-color: #5FAD41;
             }
-            
+
             .texto{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
@@ -122,12 +127,10 @@
                 } else if (numero < 0) {
                     alert("No puede comprar productos negativos");
                 } else {
-                    if (proximos !== 0) {
-                        if (proximos < 0) {
-                            alert("No se puede joven");
-                        } else {
-                            document.Producto.submit();
-                        }
+                    if (proximos < 0) {
+                        alert("No se puede joven");
+                    } else {
+                        document.Producto.submit();
                     }
                 }
 
@@ -140,19 +143,20 @@
         <header>
             <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
-        
+
         <div class="navegacion">
             <nav><h3>&nbsp;&nbsp;Bienvenido <%=usuario%>&nbsp;&nbsp;</h3></nav>
             <nav><h3>&nbsp;&nbsp;<a href="MostrarProductos.jsp">Nuestros Productos</a>&nbsp;&nbsp;</h3></nav>
-            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="Carrito.jsp">Tu carrito</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion.jsp">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
         </div>  
 
         <div class="tabla_compra1">
-            
+
             <div class="texto">
                 <h2>Usted ha elegido: <%=p.getNombre_producto()%></h2>
             </div>
-            
+
             <div class="tabla_compra2">
                 <!-- Aqui va la tabla con los productos que se van a comprar -->
                 <form name="Producto" action="AgregarCarrito" method="post">

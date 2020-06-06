@@ -40,16 +40,21 @@ usuario = (String)sesion.getAttribute("usuario");
             body{
                 background: url(img/pasto.jpeg)
             }
+            
+            header, footer {
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background: url(img/madera.jpg);
+                color: #F2E2D2;
+            }
 
-            header, footer, nav{
+            nav{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
                 margin: 1rem;
                 background-color: #378337;
                 color: #F2E2D2;
-            }
-
-            nav{
                 display: inline-block;                
                 vertical-align: middle;
                 background-color: #5FAD50;
@@ -106,8 +111,9 @@ usuario = (String)sesion.getAttribute("usuario");
         <div class="navegacion">
             <nav><h3>&nbsp;&nbsp;Bienvenido <%=usuario%>&nbsp;&nbsp;</h3></nav>
             <nav><h3>&nbsp;&nbsp;<a href="MostrarProductos.jsp">Nuestros Productos</a>&nbsp;&nbsp;</h3></nav>
-            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
-        </div>       
+            <nav><h3>&nbsp;&nbsp;<a href="Carrito.jsp">Tu carrito</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion.jsp">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
+        </div>      
 
         <div class="contenedor_carrito">
             <div class="texto">
@@ -319,7 +325,7 @@ usuario = (String)sesion.getAttribute("usuario");
                         }
                     %>
                     <tr>
-                        <td> <img src="img/<%=p.getUrlImagen_producto()%>" </td>
+                        <td> <img src="img/<%=p.getUrlImagen_producto()%>" width="200px"></td>
                         <td> <%=p.getNombre_producto()%></td>
                         <td> <%=p.getPrecio_producto()%> </td>
                         <td> <%=dv.getCantidad_DetalleVenta()%> </td>
@@ -340,9 +346,9 @@ usuario = (String)sesion.getAttribute("usuario");
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
+                        <td>&nbsp;<a href="MostrarProductos.jsp">Seguir Comprando</a>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td><a href="FinalizarCompra">FINALIZAR COMPRA</a></td>
+                        <td>&nbsp;<a href="Pago.jsp">Pagar</a>&nbsp;</td>
                     </tr>
                 </table>
                 <br>

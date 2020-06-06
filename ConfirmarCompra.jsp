@@ -8,24 +8,24 @@
 
 <%@ page session="true" %>
 <%
-String usuario = "";
-HttpSession sesion = request.getSession();
-if (sesion.getAttribute("usuario") == null) {
+    String usuario = "";
+    HttpSession sesion = request.getSession();
+    if (sesion.getAttribute("usuario") == null) {
 %>
 <jsp:forward page="login.jsp">
-<jsp:param name="error" value="Es
-obligatorio identificarse"/>
+    <jsp:param name="error" value="Es
+               obligatorio identificarse"/>
 </jsp:forward>
 <%
-} else {
-usuario = (String)sesion.getAttribute("usuario");
-}
+    } else {
+        usuario = (String) sesion.getAttribute("usuario");
+    }
 %>
 
-<%    
-    Venta v = (Venta)sesion.getAttribute("Venta");   
-    Usuario u = (Usuario)sesion.getAttribute("usuarioOB");
-    Vector<DetalleVenta> vdv = (Vector<DetalleVenta>)sesion.getAttribute("detalleVenta");
+<%
+    Venta v = (Venta) sesion.getAttribute("Venta");
+    Usuario u = (Usuario) sesion.getAttribute("usuarioOB");
+    Vector<DetalleVenta> vdv = (Vector<DetalleVenta>) sesion.getAttribute("detalleVenta");
 %>
 <!DOCTYPE html>
 <html>
@@ -48,66 +48,133 @@ usuario = (String)sesion.getAttribute("usuario");
             header, footer {
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
-                margin: 2rem;
-                background-color: #378337;
+                margin: 1rem;
+                background: url(img/madera.jpg);
                 color: #F2E2D2;
             }
 
-            .mensaje{
+            nav{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background-color: #378337;
+                color: #F2E2D2;
+                display: inline-block;                
+                vertical-align: middle;
+                background-color: #5FAD50;
+            }
+
+            a{
+                color: white;
+            }
+
+            .navegacion{
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
                 margin: 2rem;
                 background-color: #5FAD41;
             }
 
+            .contenedor{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 2rem;
+                background-color: #5FAD41;
+            }
+            
+            .mensaje{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background-color: #5FAD50;
+            }
+
+            .ticket{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 2rem;
+                background-color: #5FAD50;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .tabla{
+                border: 4px solid rgb(58, 86, 131);
+                border-radius: 10px;
+            }
+
         </style>
     </head>
     <body>
-        
+
         <header>
             <h1>¡Tienda de Plantas de "El Loco Dave"!</h1>
         </header>
 
-        <div class="mensaje">
+        <div class="navegacion">
+            <nav><h3>&nbsp;&nbsp;Bienvenido <%=usuario%>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="MostrarProductos.jsp">Nuestros Productos</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="Carrito.jsp">Tu carrito</a>&nbsp;&nbsp;</h3></nav>
+            <nav><h3>&nbsp;&nbsp;<a href="CerrarSesion.jsp">Cerrar Sesión</a>&nbsp;&nbsp;</h3></nav>
+        </div>
+
+        <div class="contenedor">
             <!-- Aqui va la el Mensaje de que se realizó la compra -->
-            <br>
-            <h1>Se ha realizado la compra con éxito</h1>
-            <h1>Aqui tiene su ticket:</h1>
-            <br>
-            <table>
-                <tr>
-                    <td>Comprador: <%=usuario%></td>
-                    <td></td>
-                    <td></td>
-                    <td>Codigo usuario: <%=v.getUsuario_codigo()%></td>
-                </tr>
-                <tr>
-                    <td>Fecha: <%=v.getVenta_fecha() %></td>
-                </tr>
-                
+            <div class="mensaje">
+                <br>
+                <h2>Se ha realizado la compra con éxito</h2>
+                <h2>Aqui tiene su ticket:</h2>
+                <br>
+            </div>
+
+            <div class="ticket">
+                <table class="tabla" border="3">
+                    <tr>
+                        <td>Comprador: <%=usuario%></td>
+                        <td></td>
+                        <td></td>
+                        <td>Codigo usuario: <%=v.getUsuario_codigo()%></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de compra: <%=v.getVenta_fecha()%></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Nombre del Producto</td>
+                        <td>Cantidad comprada</td>
+                        <td>Subtotal</td>
+                    </tr>
+
                     <%
-                        for(DetalleVenta dv : vdv){
-                        Producto p = new Producto();
-                        p = p.buscarProducto(dv.getCodigo_Producto());
+                        for (DetalleVenta dv : vdv) {
+                            Producto p = new Producto();
+                            p = p.buscarProducto(dv.getCodigo_Producto());
                     %>
-                        <tr>
-                            <td><img src="img/<%=p.getUrlImagen_producto()%>"</td>
-                            <td><%=p.getNombre_producto()%></td>
-                            <td><%=dv.getCantidad_DetalleVenta()%></td>
-                            <td><%=dv.getSubtotal_DetalleVenta() %></td>
-                        </tr>                    
-                    <%    
+                    <tr>
+                        <td><img src="img/<%=p.getUrlImagen_producto()%>" width="200px"></td>
+                        <td><%=p.getNombre_producto()%></td>
+                        <td><%=dv.getCantidad_DetalleVenta()%></td>
+                        <td><%=dv.getSubtotal_DetalleVenta()%></td>
+                    </tr>                    
+                    <%
                         }
                     %>
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td>Total pagado</td>
                         <td><%=v.getVenta_totalpagar()%> soles</td>
                     </tr>
-            </table>              
-                    <h2>Gracias por comprarpor nosotros, de clic en <a href="MostrarProductos.jsp">"Nuestros productos"</a> para seguir comprando</h2>
-            <br>
-            <h2></h2>
-            <br>
+                </table>
+            </div>
+
+            <div class="mensaje">
+                <br>
+                <h2>Gracias por comprar con nosotros, de clic en <a href="MostrarProductos.jsp">"Nuestros productos"</a> para seguir comprando</h2>
+                <br>      
+            </div>
+
         </div>
         <%
             vdv.clear();
@@ -115,6 +182,6 @@ usuario = (String)sesion.getAttribute("usuario");
         <footer>
             En esta parte va el Copyright y el contacto
         </footer>
-        
+
     </body>
 </html>

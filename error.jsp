@@ -43,8 +43,8 @@
             header, footer {
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
-                margin: 2rem;
-                background-color: #378337;
+                margin: 1rem;
+                background: url(img/madera.jpg);
                 color: #F2E2D2;
             }
 
@@ -54,6 +54,24 @@
                 margin: 2rem;
                 background-color: #5FAD41;
             }
+            
+            .oops{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 1rem;
+                background-color: #5FAD50;
+            }
+            
+            .espere{
+                border: 4px solid rgb(37, 27, 14);
+                border-radius: 30px;
+                margin: 2rem;
+                background-color: #5FAD50;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
         </style>
     </head>
     <body>
@@ -63,10 +81,19 @@
         </header>
 
         <div class="mensaje">
-            <!-- En esta parte va el mensaje de que ha ocurrido un error -->
-            <br>
-            <h1>Lo sentimos, ha ocurrido un error. Vuelva a intentarlo más tarde.</h1>
-            <br>
+            <div class="oops">
+                <h2>Oops... Ha ocurrido un error.</h2>
+            </div>
+            
+            <div class="espere">
+                <br>
+                <br>
+                <br>
+                <h2>Lo sentimos, ha ocurrido un error. Por favor espere, lo estamos redirigiendo a nuestros productos...</h2>
+                <br>
+                <br>
+                <br>
+            </div>
         </div>
 
         <footer>

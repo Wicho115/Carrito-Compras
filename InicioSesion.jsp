@@ -19,14 +19,14 @@
             }
 
             body{
-                background: url(img/pasto.jpeg)
+                background: url(img/pasto.jpeg);
             }
 
             header, footer {
                 border: 4px solid rgb(37, 27, 14);
                 border-radius: 30px;
-                margin: 2rem;
-                background-color: #378337;
+                margin: 1rem;
+                background: url(img/madera.jpg);
                 color: #F2E2D2;
             }
 
