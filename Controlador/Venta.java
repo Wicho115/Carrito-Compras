@@ -2,10 +2,12 @@
 package Controlador;
 
 import java.sql.*;
-import java.util.Vector;
+import java.util.*;
+
 /*
  * @author Wicho
  */
+
 public class Venta {
     private int Codigo_Venta;
 	private String venta_Fecha;
@@ -16,11 +18,7 @@ public class Venta {
 	public Venta(){
 
 	}
-
-    /**
-     * Obtener el ultimo codigo que se genero de forma automatica
-     * @return Retorna el codigo que se genero de la tabla Venta
-     */
+    
     private int ultimoCodigoInserto(Connection cn){
         int codigo=0;
         PreparedStatement pr=null;

@@ -160,7 +160,7 @@
                             <td>Nombre</td>
                         </tr>
                         <tr>
-                            <td><%=p.getNumero_DetalleVenta()%></td>
+                            <td><input type="text" name="codigo_Prod" id="codigo_Prod" readonly value="<%=p.getCodigo_Producto()%>"></td>
                             <td><%=p.getNombre_producto()%></td>
                         </tr>
                         <tr>
@@ -175,7 +175,7 @@
                             <td><input type="text" readonly name="stock" id="stock" value="<%=p.getStock_producto()%>"/></td>
                         </tr>
                         <tr>
-                            <td><input name="txtCantidadPedir" type="number" id="txtCantidadPedir" value="1" size="15"></td>
+                            <td><input name="Cantidad" type="number" id="Cantidad" value="1" size="15"></td>
                             <td><input type="button" value="Registrar" onclick="ComprobarStock()"></td>
                         </tr>
                     </table>

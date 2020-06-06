@@ -59,7 +59,7 @@ public class RegistrarUsuario extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        response.sendRedirect("InicioSesionRegistrado.jsp");
+        response.sendRedirect("InicioSesion.jsp");
         
     }
 

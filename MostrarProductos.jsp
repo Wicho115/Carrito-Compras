@@ -128,7 +128,7 @@
                     </tr>
                     <%
                         for (Producto prod : lista) {
-                            String url_pag = "ComprarProductos.jsp?codigo=" + prod.getNumero_DetalleVenta();
+                            String url_pag = "ComprarProductos.jsp?codigo=" + prod.getCodigo_Producto();
                     %>
                     <tr>
                         <td><img src="img/<%=prod.getUrlImagen_producto()%>" width="200px"></td>

@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Producto {
 
-    private int Numero_DetalleVenta;
+    private int Codigo_Producto;
     private String Nombre_producto;
     private float Precio_producto;
     private int Stock_producto;
@@ -33,7 +33,7 @@ public class Producto {
             
             while(rs.next()){
                 Producto p = new Producto();
-                p.setNumero_DetalleVenta(rs.getInt("producto_Codigo"));
+                p.setCodigo_Producto(rs.getInt("producto_Codigo"));
                 p.setNombre_producto(rs.getString("producto_Nombre"));
                 p.setStock_producto(rs.getInt("producto_stock"));
                 p.setPrecio_producto(rs.getFloat("producto_Precio"));
@@ -70,7 +70,7 @@ public class Producto {
             pr.setInt(1,codigo_prod);
             rs = pr.executeQuery();
             while(rs.next()){
-                p.setNumero_DetalleVenta(rs.getInt("Codigo_Producto"));
+                p.setCodigo_Producto(rs.getInt("Codigo_Producto"));
                 p.setNombre_producto(rs.getString("producto_Nombre"));
                 p.setPrecio_producto(rs.getFloat("producto_Precio"));
                 p.setStock_producto(rs.getInt("producto_stock"));
@@ -92,14 +92,40 @@ public class Producto {
         return p;
     }
     
+    public boolean actualizarStocks(Vector<Producto> vp){
+        boolean actualizo=false;
+        Connection cn=null;
+        PreparedStatement pr=null;
+        try{
+            cn=Conexion.getConexion();
+            for(Producto prod : vp){
+                String sql="update producto set producto_stock=? where producto_Codigo=?";
+                pr=cn.prepareStatement(sql);
+                pr.setInt(1, prod.getStock_producto());
+                pr.setInt(2, prod.getCodigo_Producto());
+                if(pr.executeUpdate()==1){
+                    actualizo=true;
+                }else{
+                    actualizo=false;
+                    break;
+                }
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            actualizo=false;
+        }finally{
+            try{
+                pr.close();
+                cn.close();
+            }catch(SQLException ex){
 
-    public int getNumero_DetalleVenta() {
-        return Numero_DetalleVenta;
+            }
+        }
+        return actualizo;
     }
+    
 
-    public void setNumero_DetalleVenta(int Numero_DetalleVenta) {
-        this.Numero_DetalleVenta = Numero_DetalleVenta;
-    }
+    
 
     public String getNombre_producto() {
         return Nombre_producto;
@@ -131,6 +157,14 @@ public class Producto {
 
     public void setUrlImagen_producto(String UrlImagen_producto) {
         this.UrlImagen_producto = UrlImagen_producto;
+    }
+
+    public int getCodigo_Producto() {
+        return Codigo_Producto;
+    }
+
+    public void setCodigo_Producto(int Codigo_Producto) {
+        this.Codigo_Producto = Codigo_Producto;
     }
 
 }
