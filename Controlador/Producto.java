@@ -124,9 +124,7 @@ public class Producto {
         return actualizo;
     }
     
-
-    
-
+   
     public String getNombre_producto() {
         return Nombre_producto;
     }

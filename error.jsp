@@ -4,11 +4,29 @@
     Author     : Wicho
 --%>
 
+<%@page import="java.util.Vector"%>
+<%@page import="Controlador.DetalleVenta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+
+<%
+    HttpSession sesion = request.getSession();
+    DetalleVenta dv = new DetalleVenta();
+    Vector<DetalleVenta> vdv = null;
+    
+    int c = Integer.parseInt(request.getParameter("code"));
+    if(c == 1){
+        vdv = (Vector<DetalleVenta>)sesion.getAttribute("detalleVenta");
+        dv = (DetalleVenta)sesion.getAttribute("BorrarProducto");
+        
+        vdv.removeElement(dv);
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="refresh" content="3;url=http://localhost:8080/Carrito_Compras/MostrarProductos.jsp" content="text/html charset=UTF-8" >
         <title>Ha ocurrido un error</title>
         <style>
             *{

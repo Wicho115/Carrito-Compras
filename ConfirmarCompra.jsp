@@ -1,10 +1,32 @@
-<%-- 
-    Document   : ConfirmarCompra
-    Created on : 27/05/2020, 01:24:00 PM
-    Author     : luisc
---%>
+<%@page import="Controlador.Producto"%>
+<%@page import="java.util.Vector"%>
+<%@page import="Controlador.DetalleVenta"%>
+<%@page import="Controlador.Usuario"%>
+<%@page import="Controlador.Venta"%>
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
+<%
+String usuario = "";
+HttpSession sesion = request.getSession();
+if (sesion.getAttribute("usuario") == null) {
+%>
+<jsp:forward page="login.jsp">
+<jsp:param name="error" value="Es
+obligatorio identificarse"/>
+</jsp:forward>
+<%
+} else {
+usuario = (String)sesion.getAttribute("usuario");
+}
+%>
+
+<%    
+    Venta v = (Venta)sesion.getAttribute("Venta");   
+    Usuario u = (Usuario)sesion.getAttribute("usuarioOB");
+    Vector<DetalleVenta> vdv = (Vector<DetalleVenta>)sesion.getAttribute("detalleVenta");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,13 +72,46 @@
             <!-- Aqui va la el Mensaje de que se realizó la compra -->
             <br>
             <h1>Se ha realizado la compra con éxito</h1>
+            <h1>Aqui tiene su ticket:</h1>
             <br>
-            <h2>Gracias por comprarpor nosotros, de clic en "Nuestros productos" para seguir comprando</h2>
+            <table>
+                <tr>
+                    <td>Comprador: <%=usuario%></td>
+                    <td></td>
+                    <td></td>
+                    <td>Codigo usuario: <%=v.getUsuario_codigo()%></td>
+                </tr>
+                <tr>
+                    <td>Fecha: <%=v.getVenta_fecha() %></td>
+                </tr>
+                
+                    <%
+                        for(DetalleVenta dv : vdv){
+                        Producto p = new Producto();
+                        p = p.buscarProducto(dv.getCodigo_Producto());
+                    %>
+                        <tr>
+                            <td><img src="img/<%=p.getUrlImagen_producto()%>"</td>
+                            <td><%=p.getNombre_producto()%></td>
+                            <td><%=dv.getCantidad_DetalleVenta()%></td>
+                            <td><%=dv.getSubtotal_DetalleVenta() %></td>
+                        </tr>                    
+                    <%    
+                        }
+                    %>
+                    <tr>
+                        <td>Total pagado</td>
+                        <td><%=v.getVenta_totalpagar()%> soles</td>
+                    </tr>
+            </table>              
+                    <h2>Gracias por comprarpor nosotros, de clic en <a href="MostrarProductos.jsp">"Nuestros productos"</a> para seguir comprando</h2>
             <br>
-            <h2>También puede serrar sesión el el botón de cerrar sesión</h2>
+            <h2></h2>
             <br>
         </div>
-
+        <%
+            vdv.clear();
+        %>          
         <footer>
             En esta parte va el Copyright y el contacto
         </footer>

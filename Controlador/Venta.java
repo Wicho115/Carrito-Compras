@@ -9,7 +9,7 @@ import java.util.*;
  */
 
 public class Venta {
-    private int Codigo_Venta;
+        private int Codigo_Venta;
 	private String venta_Fecha;
 	private int usuario_Codigo;
 	private double venta_TotalPagar;
@@ -24,7 +24,7 @@ public class Venta {
         PreparedStatement pr=null;
         ResultSet rs=null;
         try{
-            String sql="SELECT MAX(Codigo_Venta) as Codigo FROM Venta";
+            String sql="SELECT MAX(venta_Codigo) as Codigo FROM Venta";
             pr=cn.prepareStatement(sql);
             rs=pr.executeQuery();
             while(rs.next()){
@@ -43,13 +43,7 @@ public class Venta {
         }
         return codigo;
     }
-
-    /**
-     * Metodo utilizado para registrar una venta dentro de la base de datos
-     * @param v Informacion de la venta
-     * @param dv Detalle de la venta
-     * @return Retorma un valor valor boolean que indica si se registro o no en la base de datos la venta
-     */
+    
     public boolean registrarVenta(Venta v, Vector<DetalleVenta> ldv){
         boolean registro=false;
         Connection cn=null;

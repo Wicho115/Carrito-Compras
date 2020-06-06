@@ -5,12 +5,19 @@
  */
 package Servelts;
 
+import Controlador.DetalleVenta;
+import Controlador.Producto;
+import Controlador.Usuario;
+import Controlador.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,18 +36,29 @@ public class FinalizarCompra extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FinalizarCompra</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FinalizarCompra at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        HttpSession sesion=request.getSession();
+        Date dia=new Date();
+        Vector<DetalleVenta> vectorDetalles=(Vector<DetalleVenta>)sesion.getAttribute("detalleVenta");;
+        Vector<Producto> stockProducto=(Vector<Producto>)sesion.getAttribute("StockProducto");
+        Producto prod=new Producto();
+        double totalPagar=0;
+        for(DetalleVenta dv : vectorDetalles){
+            totalPagar+=dv.getSubtotal_DetalleVenta();
+        }
+        
+        Usuario usuario = new Usuario();
+        Venta venta=new Venta();
+        venta.setUsuario_codigo(usuario.getCodigo_usuario());
+        venta.setVenta_fecha(dia.toString());
+        venta.setVenta_totalpagar(totalPagar);
+        boolean registrarVenta=venta.registrarVenta(venta, vectorDetalles);
+        boolean actualizarVenta=prod.actualizarStocks(stockProducto);
+        if(registrarVenta != actualizarVenta){
+            sesion.setAttribute("Venta", venta);
+            response.sendRedirect("ConfirmarCompra.jsp");
+        }else{
+            response.sendRedirect("error.jsp");
         }
     }
 

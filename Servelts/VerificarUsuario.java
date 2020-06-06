@@ -40,10 +40,9 @@ public class VerificarUsuario extends HttpServlet {
             System.out.println("ya fue");
             if(u != null){
                 HttpSession sesion=request.getSession(true);
-                sesion.setAttribute("usuario", u);
-                
-                HttpSession sesionOk = request.getSession();
-                sesionOk.setAttribute("usuario",usuario);
+                sesion.setAttribute("usuarioOB", u);
+                                
+                sesion.setAttribute("usuario",usuario);
                 
                 if(u.getPrivilegio_usuario() == 0){
                     response.sendRedirect("RegistrarProductos.jsp");
