@@ -65,12 +65,12 @@ public class Producto {
         
         try{
             cn = Conexion.getConexion();
-            String sql = "select * from producto where Codigo_Producto=?";
+            String sql = "select * from producto where producto_Codigo=?";
             pr = cn.prepareStatement(sql);
             pr.setInt(1,codigo_prod);
             rs = pr.executeQuery();
             while(rs.next()){
-                p.setCodigo_Producto(rs.getInt("Codigo_Producto"));
+                p.setCodigo_Producto(rs.getInt("producto_Codigo"));
                 p.setNombre_producto(rs.getString("producto_Nombre"));
                 p.setPrecio_producto(rs.getFloat("producto_Precio"));
                 p.setStock_producto(rs.getInt("producto_stock"));

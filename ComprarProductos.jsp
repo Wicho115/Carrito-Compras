@@ -90,6 +90,9 @@
                 border-radius: 30px;
                 margin: 2rem;
                 background-color: #5FAD50;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .tabla{
@@ -101,12 +104,12 @@
     </head>
     <script>
         function ComprobarStock() {
-            var stock;
+            var stock, stock1;
 
-            stock = document.Producto.stock.value;
-            stock = parseInt(stock);
+            stock1 = document.Producto.stock.value;
+            stock = parseInt(stock1);
 
-            var numero = document.Producto.txtCantidadPedir.value;
+            var numero = document.Producto.Cantidad.value;
             numero = parseInt(numero);
 
             var proximos = stock - numero;
@@ -123,7 +126,7 @@
                         if (proximos < 0) {
                             alert("No se puede joven");
                         } else {
-                            alert("Ok");
+                            document.Producto.submit();
                         }
                     }
                 }

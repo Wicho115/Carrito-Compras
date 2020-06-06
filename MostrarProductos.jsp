@@ -90,6 +90,9 @@
                 border-radius: 30px;
                 margin: 2rem;
                 background-color: #5FAD50;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .tabla{

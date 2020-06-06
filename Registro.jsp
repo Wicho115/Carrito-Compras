@@ -49,6 +49,9 @@
 
             article{
                 width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             aside{
                 width: 20%;
