@@ -167,7 +167,7 @@
         </div>
 
         <footer>
-            En esta parte va el Copyright y el contacto
+            Tienda El Loco Dave © 2006 || Contacto: 55-7410-8596 || Contacto: 55-4512-7412
         </footer>
 
     </body>

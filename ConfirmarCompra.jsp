@@ -134,7 +134,7 @@
                         <td>Comprador: <%=usuario%></td>
                         <td></td>
                         <td></td>
-                        <td>Codigo usuario: <%=v.getUsuario_codigo()%></td>
+                        <td>Codigo usuario: <%=u.getCodigo_usuario()%></td>
                     </tr>
                     <tr>
                         <td>Fecha de compra: <%=v.getVenta_fecha()%></td>
@@ -180,7 +180,7 @@
             vdv.clear();
         %>          
         <footer>
-            En esta parte va el Copyright y el contacto
+            Tienda El Loco Dave © 2006 || Contacto: 55-7410-8596 || Contacto: 55-4512-7412
         </footer>
 
     </body>

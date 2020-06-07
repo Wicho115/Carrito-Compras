@@ -45,7 +45,7 @@ public class VerificarUsuario extends HttpServlet {
                 sesion.setAttribute("usuario",usuario);
                 
                 if(u.getPrivilegio_usuario() == 0){
-                    response.sendRedirect("RegistrarProductos.jsp");
+                    response.sendRedirect("MostrsrProductos.jsp");
                 }else{
                     response.sendRedirect("MostrarProductos.jsp");
                 }
